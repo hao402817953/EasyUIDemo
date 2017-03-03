@@ -15,10 +15,10 @@
 
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="url" value="${jdbc.url}" />
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="${jdbc.mysql.url}" />
+		<property name="driverClassName" value="${jdbc.mysql.driver}" />
+		<property name="username" value="${jdbc.mysql.username}" />
+		<property name="password" value="${jdbc.mysql.password}" />
 	</bean>
 	<!-- 配置外部数据库连接信息-->
 	<context:property-placeholder location="classpath:db.properties"/>
@@ -37,7 +37,7 @@
 		<!-- 3.配置映射文件 -->
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:cn/itcast/ssh/domain/*.hbm.xml</value>
+				<value>classpath:cn/itcast/ssh/domain/*.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -74,7 +74,6 @@
 	<import resource="classpath:applicationContext-dao.xml"/>
 	<import resource="classpath:applicationContext-service.xml"/>
 	<import resource="classpath:applicationContext-action.xml"/>
-	<import resource="classpath:activiti-context.xml"/>
 	
 	
 		

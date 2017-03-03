@@ -9,26 +9,28 @@
     <constant name="struts.ui.theme" value="simple" />
 
     <package name="default" namespace="/" extends="struts-default">
-    	<!-- 拦截器配置 -->
+    	<!-- 定义一个登录的拦截器 -->
     	<interceptors>
-    		<!-- 定义了一个用于拦截器登录的拦截器 -->
-    		<interceptor name="loginInterceptor" class="cn.itcast.ssh.utils.LoginInteceptor"></interceptor>
-    		<!-- 定义一个拦截器栈 -->
-    		<interceptor-stack name="systemStack">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="loginInterceptor" />
-			</interceptor-stack>
+    		<interceptor name="loginInterceptor" class="cn.itcast.ssh.web.interceptor.LoginInterceptor">
+    		</interceptor>
+    		<interceptor-stack name="interceptorStack">
+    			<interceptor-ref name="defaultStack" />
+    			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+    		</interceptor-stack>
     	</interceptors>
-    
-  		<!-- 定义系统默认拦截器 全局 -->
-		<default-interceptor-ref name="systemStack" /> 
+    	<!-- 定义系统默认拦截器 全局 -->
+    	<default-interceptor-ref name="loginInterceptor"></default-interceptor-ref>
     	<!-- 全局结果视图 -->
     	<global-results>
-    		<result name="login" type="redirect">
-    			login.jsp
-    		</result>
+    		<result name="login" type="redirect">login.jsp</result>
     	</global-results>
     	
+    	<action name="login" class="cn.itcast.ssh.web.action.LoginAction" method="login">
+    		<result name="" type="redirect">login.jsp</result>
+    		<result name="" type="redirect">index.jsp</result>
+    	</action>
+    	<!--  拦截器配置 
+    	全局结果视图
     	<action name="loginAction_*" class="loginAction" method="{1}">
         	<result name="success">WEB-INF/views/main.jsp</result>
         	<result name="top">WEB-INF/views/top.jsp</result>
@@ -59,6 +61,14 @@
         	</result>
         	<result name="taskForm">WEB-INF/views/workflow/taskForm.jsp</result>
             <result name="viewHisComment">WEB-INF/views/workflow/taskFormHis.jsp</result>
-        </action>
+        </action> -->
+        
+        
+        
+        
+        
+        
+        
+        
     </package>
 </struts>
